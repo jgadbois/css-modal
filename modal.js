@@ -352,7 +352,7 @@
 		 * @param  {Object} event The incoming hashChange event
 		 * @return {void}
 		 */
-		mainHandler: function (event, noHash) {
+		mainHandler: function (hashChangeEvent, noHash) {
 			var hash = global.location.hash.replace('#', '');
 			var index = 0;
 			var tmp = [];
@@ -361,7 +361,7 @@
 
 			// JS-only: no hash present
 			if (noHash) {
-				hash = event.currentTarget.getAttribute('href').replace('#', '');
+				hash = hashChangeEvent.currentTarget.getAttribute('href').replace('#', '');
 			}
 
 			modalElement = document.getElementById(hash);
@@ -389,9 +389,9 @@
 
 				// Polyfill to prevent the default behavior of events
 				try {
-					event.preventDefault();
+					hashChangeEvent.preventDefault();
 				} catch (ex) {
-					event.returnValue = false;
+					hashChangeEvent.returnValue = false;
 				}
 
 				// Get first element in selected element
