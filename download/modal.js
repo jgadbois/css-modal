@@ -21,8 +21,8 @@
 		// All elements that can get focus, can be tabbed in a modal
 		tabbableElements: 'a[href], area[href], input:not([disabled]),' +
 			'select:not([disabled]), textarea:not([disabled]),' +
-			'button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]),' +
-			'[contenteditable]',
+			'button:not([disabled]), iframe, object, embed, *[tabindex],' +
+			'*[contenteditable]',
 
 		/*
 		 * Polyfill addEventListener for IE8 (only very basic)
@@ -54,16 +54,17 @@
 				elements = [elements];
 			}
 
-			// If jQuery is supported
-			if ($) {
-				$(elements).on(event, callback);
-			// Default way to support events
-			} else {
-				for (; i < elements.length; i++) {
-					if (elements[i].addEventListener) {
-						elements[i].addEventListener(event, callback, false);
-					}
+			for (; i < elements.length; i++) {
+
+				// If jQuery is supported
+				if ($) {
+					$(elements[i]).on(event, callback);
+
+				// Default way to support events
+				} else if ('addEventListener' in elements[i]) {
+					elements[i].addEventListener(event, callback, false);
 				}
+
 			}
 		},
 
@@ -484,7 +485,7 @@
 
 			// And close modal without hash
 			this.on('click', document.querySelectorAll('.modal-close'), function (event) {
-				if (modal.activeElement && modal.activeElement._noHash){
+				if (modal.activeElement._noHash){
 					modal.mainHandler(event, true);
 				}
 			});

@@ -1,6 +1,26 @@
 # Changelog
 
-## HEAD
+## 1.5.0 - 12.05.2016
+
+* Make sure iframes don't interfere with modal events [fixes #199]
+* Fix jshint issue in modal.js
+* Prevented an extra loop when jQuery is present
+* Improved tabbableElements selector string
+* 9c91b30 Update node modules
+* 300c3ff Fix demo loading in IE8
+
+## 1.4.1 - 17.07.2015
+* Add missing comma in bower.json
+* Add example for stackable modal
+
+## 1.4.0 - 08.07.2015
+* Set default height to `auto` when scroll is prevented
+* Fix CommonJS export in plugin resize
+* Update examples: load async
+* Remove moot `version` property from bower.json
+* Fix click on modal-close if no hash is present
+* Allow links to surround other html elements
+* Update node modules
 * Add a .npmignore file
 * Add `main` and `style` to package.json
 
