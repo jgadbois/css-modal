@@ -353,7 +353,7 @@
 		 * @return {void}
 		 */
 		mainHandler: function (hashChangeEvent, noHash) {
-			var hash = global.location.hash.replace('#', '');
+			var hash = location.hash.replace('#', '');
 			var index = 0;
 			var tmp = [];
 			var modalElement;
